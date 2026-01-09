@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Spring이 관리할 Bean 등록 -->
+	<bean class="com.yedam.app.xml.SamsunTV" />
+
+	<!-- DI 설정 -->
+	<bean id="chef" class="com.yedam.app.java.Chef" />
+	<bean class="com.yedam.app.java.Restaurant">
+		<!-- 생성자 인젝션 -->
+		<!-- <constructor-arg ref="chef" /> -->
+		<!-- 세터 인젝션 -->
+		<!-- property(필드) : 필드이름이 chef이거에 chef(위에 아이디가 chef인거)를 준다.  -->
+		<!-- name : set+name 메소드명 -->
+		<property name="chef" ref="chef"></property>
+	</bean>
+
+</beans>
