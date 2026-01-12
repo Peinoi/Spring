@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.mybatis.mapper.DpmMapper">
+	<select id="dselectAll" resultType="DpmVO">
+		SELECT
+		department_id,
+		department_name,
+		manager_id,
+		location_id
+		FROM departments
+		ORDER BY
+		department_id
+	</select>
+
+	<select id="dselectInfo" parameterType="DpmVO"
+		resultType="DpmVO">
+		SELECT
+		department_id,
+		department_name,
+		manager_id,
+		location_id
+		FROM departments
+		WHERE
+		department_id = #{departmentId}
+	</select>
+
+	<insert id="dinsertInfo" parameterType="DpmVO">
+		INSERT INTO departments
+		(
+		department_id,
+		department_name,
+		manager_id,
+		location_id
+		)
+		VALUES(
+		DEPARTMENTS_SEQ.NEXTVAL,
+		#{departmentName},
+		#{managerId},
+		#{locationId}
+		)
+	</insert>
+	<!-- 수정 -->
+	<update id="dupdateInfo" parameterType="DpmVO">
+		UPDATE departments SET
+		department_name = #{departmentName}
+		WHERE department_id =
+		#{departmentId}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="ddeleteInfo" parameterType="int">
+		DELETE departments
+		WHERE
+		department_id = #{departmentId}
+	</delete>
+
+</mapper>

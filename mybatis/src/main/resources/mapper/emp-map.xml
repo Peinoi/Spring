@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.app.mybatis.mapper.EmpMapper">
+	<!-- Interface EmpMapper에 대응되는 Mapper.xml -->
+	<!-- 전체조회 -->
+	<select id="selectAll" resultType="EmpVO">
+		SELECT employee_id
+		, first_name
+		, last_name
+		, email
+		, phone_number
+		, hire_date
+		, job_id
+		, salary,
+		commission_pct
+		, manager_id
+		, department_id
+		FROM employees
+		ORDER BY
+		employee_id
+	</select>
+	<!-- 단건조회 -->
+	<select id="selectInfo" parameterType="EmpVO" resultType="EmpVO">
+		SELECT employee_id
+		, first_name
+		, last_name
+		, email
+		, phone_number
+		,
+		hire_date
+		, job_id
+		, salary
+		, commission_pct
+		, manager_id
+		, department_id
+		FROM employees
+		WHERE employee_id = #{employeeId}
+		<!-- 태그 안의 #{}는 PreparedStatement의 ?을 의미 -->
+		<!-- #{} 안에 들어가는 대상은 parameterType의 필드명 -->
+	</select>
+	<!-- 등록 -->
+	<insert id="insertInfo" parameterType="EmpVO">
+		INSERT INTO employees
+		(
+		employee_id,
+		last_name,
+		email,
+		hire_date,
+		job_id
+		)
+		VALUES(
+		EMPLOYEES_SEQ.NEXTVAL,
+		#{lastName},
+		#{email},
+		sysdate,
+		#{jobId}
+		)
+	</insert>
+	<!-- 수정 -->
+	<update id="updateInfo" parameterType="EmpVO">
+		UPDATE employees SET
+		first_name = #{firstName}
+		,salary = #{salary}
+		WHERE employee_id = #{employeeId}
+	</update>
+
+	<!-- 삭제 -->
+	<delete id="deleteInfo" parameterType="int">
+		DELETE employees
+		WHERE employee_id = #{id}
+	</delete>
+
+</mapper>
