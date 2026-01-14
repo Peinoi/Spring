@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.app.emp.service.EmpService;
 import com.yedam.app.emp.service.EmpVO;
@@ -23,9 +24,10 @@ public class EmpController {
 		return "empList";
 	}
 	
-	@GetMapping("/empList/100")
-	public String empListInfo(Model model) {
-		EmpVO list = empService.findInfo(100);
+	@GetMapping("/empInfo")
+	@ResponseBody
+	public String empListInfo(int a, Model model) {
+		EmpVO list = empService.findInfo(a);
 		model.addAttribute("empInfo", list);
 		return "empList";
 	}
