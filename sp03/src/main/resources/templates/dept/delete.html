@@ -2,20 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
- <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+	crossorigin="anonymous" />
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+	crossorigin="anonymous"></script>
 <title></title>
 </head>
 <body>
-
+	<div class="container text-center">
+		<h3>부서 삭제</h3>
+		<div>
+			<div class="form-floating mb-3">
+				<input id="dId" type="text" class="form-control"
+					th:value="${dept.departmentId}" readonly> <label for="dId">부서
+					번호</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input id="" type="text" class="form-control"
+					th:value="${dept.departmentName}" readonly> <label for="">부서
+					이름</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input id="" type="text" class="form-control"
+					th:value="${dept.managerId}" readonly> <label for="">매니저
+					번호</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input id="" type="text" class="form-control"
+					th:value="${dept.locationId}" readonly> <label for="">지역
+					번호</label>
+			</div>
+		</div>
+		<div>
+			<button name="del" class="btn btn-secondary">삭제</button>
+		</div>
+	</div>
+	<script>
+		document
+	    .querySelector('name="del"')
+	    .addEventListener("click", function (event) {
+	      event.preventDefault();
+	      fetch("deptDelete", {
+		        method: "Get",
+		      })
+		        .then((res) => res.json())
+		        .then((result) => {
+		          console.log(result);
+		        })
+		        .catch((err) => console.log(err));
+	
+	      alert("정상적으로 삭제되었습니다.");
+	      event.currentTarget.submit();
+	    });
+	</script>
 </body>
 </html>
