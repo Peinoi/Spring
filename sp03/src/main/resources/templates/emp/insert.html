@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <title></title>
+  </head>
+
+  <body>
+    <div class="container text-center">
+      <h3>사원 등록</h3>
+      <!--/* @{}, 링크 표현식 => 경로를 생성할 때 사용
+				href, src, action 속성에서 주로 사용
+		 */-->
+      <form th:action="@{/empInsert}" method="post" name="insertForm">
+        <div class="form-floating mb-3">
+          <input id="ename" class="form-control" type="text" name="lastName" />
+          <label for="ename">이름</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input id="email" class="form-control" type="email" name="email" />
+          <label for="email">이메일</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input id="hdate" class="form-control" type="date" name="hireDate" />
+          <label for="hdate">입사일</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input id="job" class="form-control" type="text" name="jobId" />
+          <label for="job">업무</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="sal"
+            class="form-control"
+            type="number"
+            step="0.01"
+            name="salary"
+          />
+          <label for="sal">급여</label>
+        </div>
+        <div>
+          <button type="reset" class="btn btn-primary">초기화</button>
+          <button type="submit" class="btn btn-secondary">등록</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document
+        .querySelector('form[name="insertForm"]')
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // 해당 이벤트 일시정지
+          let nameTag = document.querySelector('[name="lastName"]');
+          if (nameTag.value == "") {
+            alert("이름이 입력되지 않았습니다.");
+            nameTag.focus();
+            return;
+          }
+
+          let salaryTag = document.querySelector('[name="salary"]');
+          if (salaryTag.value == "") {
+            salaryTag.value = 0;
+          }
+
+          // alsert("정상적으로 등록되었습니다.");
+          alert("정상적으로 등록되었습니다.");
+          event.currentTarget.submit();
+        });
+    </script>
+  </body>
+</html>

@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EmpServiceImpl implements EmpService {
 
-	private EmpMapper empMapper;
+	private final EmpMapper empMapper;
 
 	@Override
 	public List<EmpVO> findAll() {

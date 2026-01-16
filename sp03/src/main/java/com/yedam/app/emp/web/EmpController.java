@@ -40,8 +40,8 @@ public class EmpController {
 		model.addAttribute("emps", list);
 		// 3) 데이터를 출 력할 페이지 선택
 		return "emp/list"; // 페이지 이동은 ' / '를 시작하면 안됨
-		// prefix => classpahth:/ptmlates
-		// subfix => .html
+		// prefix => classpahth:/templates
+		// suffix => .html
 
 	}
 
@@ -60,7 +60,7 @@ public class EmpController {
 	}
 
 	// 등록 - 처리
-	@PostMapping("empInsert")
+	@PostMapping("empInsert") // <form/> => QueryString
 	public String empInsertProcess(EmpVO empVO) {
 		int eid = empService.addEmpInfo(empVO);
 

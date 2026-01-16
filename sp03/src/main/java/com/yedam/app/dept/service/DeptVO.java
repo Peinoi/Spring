@@ -1,0 +1,12 @@
+package com.yedam.app.dept.service;
+
+import lombok.Data;
+
+@Data
+public class DeptVO {
+	private Integer departmentId;
+	private String departmentName;
+	private String managerId;
+	private String locationId;
+
+}

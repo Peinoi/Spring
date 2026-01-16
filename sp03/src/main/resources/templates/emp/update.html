@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <title></title>
+  </head>
+
+  <body>
+    <div class="container text-center">
+      <h3>사원 수정</h3>
+      <form name="updateForm" th:object="${emp}">
+        <div class="form-floating mb-3">
+          <input
+            id="eId"
+            class="form-control"
+            type="text"
+            th:field="*{employeeId}"
+            readonly
+          />
+          <label for="eId">사원번호</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="ename"
+            class="form-control"
+            type="text"
+            th:field="*{lastName}"
+          />
+          <label for="ename">이름</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="email"
+            class="form-control"
+            type="email"
+            th:field="*{email}"
+          />
+          <label for="email">이메일</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="hdate"
+            class="form-control"
+            type="date"
+            th:field="*{hireDate}"
+          />
+          <label for="hdate">입사일</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            id="sal"
+            class="form-control"
+            type="number"
+            step="0.01"
+            th:field="*{salary}"
+          />
+          <label for="sal">급여</label>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary">수정</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      updateForm.querySelector("button").addEventListener("click", updateAjax);
+
+      function updateAjax(event) {
+        // 1) 전송 데이터 반환
+        let dataObj = getEmpObj();
+        // 2) AJAX
+        fetch("empUpdate", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(dataObj),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => console.log(err));
+      }
+
+      function getEmpObj() {
+        // FormData : 통신용 객체, multipart/form-data를 기본값으로 가짐
+
+        let formData = new FormData(updateForm);
+
+        let formObj = {};
+        formData.forEach((val, key) => {
+          console.log(val, key);
+          formObj[key] = val;
+        });
+        return formObj;
+      }
+    </script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ package com.yedam.app.emp.service;
 import java.util.List;
 import java.util.Map;
 
+
 public interface EmpService {
 
 	// 사원 전체 조회
