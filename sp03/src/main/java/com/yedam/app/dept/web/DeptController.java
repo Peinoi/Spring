@@ -18,15 +18,15 @@ import com.yedam.app.dept.service.impl.DeptServiceImpl;
 @Controller
 public class DeptController {
 
-	private final DeptServiceImpl deptServiceImpl;
+//	private final DeptServiceImpl deptServiceImpl;
 	private long id = 0;
 	private final DeptService deptService;
 
 	// 생성자
 	@Autowired
-	public DeptController(DeptService deptService, DeptServiceImpl deptServiceImpl) {
+	public DeptController(DeptService deptService) {
 		this.deptService = deptService;
-		this.deptServiceImpl = deptServiceImpl;
+//		this.deptServiceImpl = deptServiceImpl;
 	}
 
 	// 전체
@@ -74,7 +74,7 @@ public class DeptController {
 	}
 
 	// 삭제
-	@GetMapping("deptDelete")
+	@GetMapping("deptDelete") // method=get, 어노테이션 x, 기본 데이터형
 	public String deptDelete(Integer deptId) {
 		deptService.removeDeptInfo(deptId);
 		return "redirect:deptList";

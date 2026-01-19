@@ -36,7 +36,7 @@ public class EmpController {
 	public String empList(Model model) {
 		// 1) 제공할 서비스 수행
 		List<EmpVO> list = empService.findAll();
-		// 2) 클라이언트에 전달할 데잍커 닫ㄷ기
+		// 2) 클라이언트에 전달할 데잍커 닫기
 		model.addAttribute("emps", list);
 		// 3) 데이터를 출 력할 페이지 선택
 		return "emp/list"; // 페이지 이동은 ' / '를 시작하면 안됨

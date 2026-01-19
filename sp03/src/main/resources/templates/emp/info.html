@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layouts/default_layout}"
+	layout:fragment="Content">
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-	crossorigin="anonymous"></script>
+
 <title></title>
 </head>
 <body>
@@ -18,40 +13,46 @@
 		<h3>사원 상세 조회</h3>
 		<div>
 			<div class="form-floating mb-3">
-				 <input id="eId" class="form-control" type="text"
-					th:value="${emp.employeeId}" readonly />
-				<label for="eId" >사원번호</label>
+				<input id="eId" class="form-control" type="text"
+					th:value="${emp.employeeId}" readonly /> <label for="eId">사원번호</label>
 			</div>
 			<div class="form-floating mb-3">
-				 <input id="ename"  class="form-control" type="text"
+				<input id="ename" class="form-control" type="text"
 					th:value="${emp.lastName}" readonly /> <label for="ename">이름</label>
 			</div>
 			<div class="form-floating mb-3">
-				<input id="email"  class="form-control" type="email"
-					th:value="${emp.email}" readonly />
-				<label for="email">이메일</label> 
+				<input id="email" class="form-control" type="email"
+					th:value="${emp.email}" readonly /> <label for="email">이메일</label>
 			</div>
 			<div class="form-floating mb-3">
-				 <input id="hdate"   class="form-control" type="date"
+				<input id="hdate" class="form-control" type="date"
 					th:value="${#dates.format(emp.hireDate, 'yyyy-MM-dd')}" readonly />
 				<label for="hdate">입사일</label>
 			</div>
 			<div class="form-floating mb-3">
-				 <input id="job"  class="form-control" type="text"
-					th:value="${emp.jobId}" readonly />
-				<label for="job">업무</label>
+				<input id="job" class="form-control" type="text"
+					th:value="${emp.jobId}" readonly /> <label for="job">업무</label>
 			</div>
 			<div class="form-floating mb-3">
-				<input id="sal"  class="form-control" type="number"
-					step="0.01" th:value="${emp.salary}" readonly />
-				<label for="sal">급여</label> 
+				<input id="sal" class="form-control" type="number" step="0.01"
+					th:value="${emp.salary}" readonly /> <label for="sal">급여</label>
 			</div>
 			<div>
-				<button type="button" class="btn btn-primary">수정</button>
-				<button type="button" class="btn btn-secondary">목록</button>
-				<button type="button" class="btn btn-danger">삭제</button>
+				<button type="button"
+					th:onclick="|location.href='@{/empUpdate(employeeId=${emp.employeeId})}'|"
+					class="btn btn-primary">수정</button>
+				<button type="button" th:onclick="|location.href='@{/empList}'|"
+					class="btn btn-secondary">목록</button>
+				<button type="button"
+					th:onclick="|location.href='/empDelete?empId=${emp.employeeId}'|"
+					class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 	</div>
+
+	<script>
+		
+	</script>
+
 </body>
 </html>
