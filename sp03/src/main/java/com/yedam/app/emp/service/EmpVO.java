@@ -4,8 +4,14 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor // Mybatis
+@AllArgsConstructor
+@Builder
 @Data
 public class EmpVO {
 	private Integer employeeId; // PK
