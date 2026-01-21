@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://github.com/ultraq/thymeleaf-layout-dialect"
+  layout:decorate="~{common/layouts/default_layout}"
+  layout:fragment="content"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelector('form[name="insertForm"]')
+          .addEventListener("submit", boardInsertAjax);
+      });
+
+      // 유효성 체크
+      function boardInsertAjax(event) {
+        event.preventDefault(); // 동작 정지
+        const formTag = event.currentTarget;
+        // 1.제목
+        let titleTag = formTag.querySelector('[name="title"]');
+        console.log(titleTag);
+        if (titleTag.value == "") {
+          alert("제목을 작성해주세요.");
+          titleTag.focus();
+          return;
+        }
+        // 2.작성자
+        let writerTag = formTag.querySelector('[name="writer"]');
+        if (writerTag.value == "") {
+          alert("작성자를 작성해주세요.");
+          writerTag.focus();
+          return;
+        }
+        // 3.작성일자
+        let regdateTag = formTag.querySelector('[name="regdate"]');
+        if (regdateTag.value == "") {
+          alert("작성일자를 작성해주세요.");
+          regdateTag.focus();
+          return;
+        }
+        alert("게시글을 등록했습니다.");
+        // 강제 시작
+        formTag.submit();
+      }
+    </script>
+    <div class="container">
+      <form name="insertForm" th:action="@{/boardInsert}" method="post">
+        <h3>게시글 등록</h3>
+        <table class="table">
+          <tr>
+            <th>제목</th>
+            <td><input type="text" name="title" /></td>
+          </tr>
+          <tr>
+            <th>작성자</th>
+            <td><input type="text" name="writer" /></td>
+          </tr>
+          <tr>
+            <th>내용</th>
+            <td><textarea name="contents"></textarea></td>
+          </tr>
+          <tr>
+            <th>첨부파일</th>
+            <td><input type="text" name="image" /></td>
+          </tr>
+          <tr>
+            <th>작성일자</th>
+
+            <td><input type="date" name="regdate" /></td>
+          </tr>
+        </table>
+        <div>
+          <button type="submit">등록</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

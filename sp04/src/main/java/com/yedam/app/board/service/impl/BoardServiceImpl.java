@@ -26,4 +26,18 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.selectAll();
 	}
 
+	// 게시글 상세 조회
+	@Override
+	public BoardVO findByBno(BoardVO boardVO) {
+
+		return boardMapper.selectInfo(boardVO);
+	}
+
+	// 게시글 등록
+	@Override
+	public int addInfo(BoardVO boardVO) {
+		int result = boardMapper.insertInfo(boardVO);
+		return result == 1 ? boardVO.getBno() : -1;
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.yedam.app;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,7 +13,7 @@ public class AopTests {
 	AaaService aaaService;
 	
 	@Test
-	void transcationlTest() {
+	public void transcationlTest() {
 		aaaService.insert();
 	}
 }

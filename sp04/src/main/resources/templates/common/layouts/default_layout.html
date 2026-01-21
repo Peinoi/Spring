@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://github.com/ultraq/thymeleaf-layout-dialect">
+<head>
+<meta charset="UTF-8">
+<th:block
+	th:replace="~{common/configs/default_config :: BootstrapConfig}"></th:block>
+<title></title>
+</head>
+<body>
+	<header th:insert="~{common/fragments/default_header :: DefaultHeader}"></header>
+	<main>
+		<div layout:fragment="content"></div>
+	</main>
+</body>
+</html>

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://github.com/ultraq/thymeleaf-layout-dialect"
+	layout:decorate="~{common/layouts/default_layout}"
+	layout:fragment="content">
 <head>
 <meta charset="UTF-8">
 <title></title>
+
 </head>
 <body>
 	<div class="container">
 		<h3>게시글 목록</h3>
-		<table>
+		<table class="table">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -18,11 +22,11 @@
 			</thead>
 			<tbody>
 				<th:block th:each="board : ${boards}">
-					<tr>
+					<tr th:onclick="|location.href='@{/boardInfo(bno=${board.bno})}'|">
 						<td>[[ ${board.bno} ]]</td>
 						<td>[[ ${board.title} ]]</td>
 						<td>[[ ${board.writer} ]]</td>
-						<td>[[ ${board.regdate} ]]</td>
+						<td>[[ ${#dates.format(board.regdate, 'yyyy년 MM월 dd일')} ]]</td>
 					</tr>
 				</th:block>
 			</tbody>

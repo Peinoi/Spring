@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.app.board.mapper.BoardMapper">
+	<!-- 전체 조회  -->
 	<select id="selectAll" resultType="BoardVO">
 		SELECT bno
 			,title
@@ -12,7 +13,42 @@
 		FROM board
 		ORDER BY bno
 	</select>
+	<!-- 단건 조회 -->
+	<select id="selectInfo" parameterType="BoardVO" resultType="BoardVO">
+		SELECT bno
+			,title
+			,contents
+			,writer
+			,regdate
+			,updatedate
+			,image	
+		FROM board
+		WHERE bno = #{bno}
+	</select>
 	
-	
-	
+	<insert id="insertInfo" parameterType="BoardVO">
+		<selectKey 	keyProperty="bno" 
+					resultType="Integer" 
+					order="BEFORE">
+			SELECT NVL(MAX(bno) + 1,1000) FROM board
+		</selectKey>
+		INSERT INTO board
+		(
+			bno
+			,title
+			,contents
+			,regdate
+			,writer
+			,image
+		)
+		VALUES
+		(
+			#{bno}
+			, #{title}
+			, #{contents}
+			, #{regdate}
+			, #{writer}
+			, #{image}
+		)
+	</insert>
 </mapper>
