@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layouts/default_layout}"
+	layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+body {
+	text-align: center;
+	background-color: yellowgreen;
+}
+
+table {
+	width: 100%;
+}
+
+table, th, td {
+	border: 2px sold black;
+}
+
+.num {
+	text-align: right;
+}
+
+.str {
+	text-align: left;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h3>도서 조회/수정</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>도서번호</th>
+					<th>도서명</th>
+					<th>대여총계</th>
+					<th>대여횟수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="info : ${list}">
+					<tr>
+						<td>[[ ${info.bookNo} ]]</td>
+						<td class="str">[[ ${info.bookName} ]]</td>
+						<td class="num">[[ ${info.price} ]]</td>
+						<td class="num">[[ ${info.cnt} ]]</td>
+					</tr>
+				</th:block>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<head th:replace="common/configs/config :: ConfigFragment">
+<body>
+	<header
+		th:replace="~{common/fragments/book_header :: BookHeaderFragment"></header>
+	<aside th:replace="~{common/fragments/book_menu :: BookMenuFragment"></aside>
+
+	<main>
+		<div layout:fragment="Content"></div>
+	</main>
+	<footer
+		th:replace="~{common/fragments/book_footer :: BookFooterFragment"></footer>
+
+</body>
+</html>
